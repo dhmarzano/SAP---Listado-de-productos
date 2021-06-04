@@ -1,0 +1,38 @@
+<mvc:View
+    controllerName="app2.controller.Productos"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+>
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content>
+                        <List id = "listaProductos"
+                              items="{path: '/ProductSet', sorter : { path : 'Category', group : true} }"> <!--Ordena y agrupa por Categoria-->
+                             <headerToolbar> <!--Barra de busqueda-->
+                                <Toolbar>
+                                    <Title text="{i18n>productListTitle}"/>
+                                    <ToolbarSpacer/>
+                                    <SearchField width="50%" search=".onFilterProductos"/>
+                                 </Toolbar>
+                                </headerToolbar>
+                                <items>
+                                <ObjectListItem title ="{Name} {SupplierName}"  
+                                	            number="{Price}" 
+                                                numberState="{= ${Price} > 50 ? 'Error' : 'Success' }"
+                                                numberUnit="{CurrencyCode}"
+                                                intro="Codigo: {ProductID}" > 
+                                                <firstStatus>
+                                                <ObjectStatus text="{path : 'WeightMeasure', formatter :'.formatter.controlPeso' }"/> <!--Control de campo-->
+                                                </firstStatus>
+                                </ObjectListItem>
+                            </items>
+                         </List>
+                    </content>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>
